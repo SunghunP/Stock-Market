@@ -22,8 +22,7 @@ export default function Stocks({setStock}) {
             <td onClick = {() => handleClick(id)}><Link key={id} to={`/stocks/${stock.name}`}>{stock.name}</Link></td>
             <td>{stock.lastPrice}</td>
             <td>
-              {(stock.change * stock.open).toFixed(2)}
-              ({stock.change > 0 ? '+': ''}{(stock.change*100).toFixed(2)}%)
+              ({stock.change > 0 ? '+': ''}{stock.change.toFixed(2)}%)
             </td>
           </tr>
         ))}
