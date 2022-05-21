@@ -1,24 +1,37 @@
 import stocks from "../models/stocksData"
 import { Link } from "react-router-dom"
+import { useState } from "react"
 
-export default function Stocks() {
+export default function Stocks({setStock}) {
+  const [id, setId] = useState()
+
+  function handleClick(id) {
+    setStock(stocks[id])
+  }
+
   return (
     <table>
-      <tr>
-        <th>Company</th>
-        <th>Price</th>
-        <th>Gains/Losses</th>
-      </tr>
-      {stocks.map(stock => (
+      <thead>
         <tr>
-          <td><Link to={`/stocks/${stock.name}`}>{stock.name}</Link></td>
-          <td>{stock.lastPrice}</td>
-          <td>
-            {(stock.change * stock.open).toFixed(2)}
-            ({stock.change > 0 ? '+': ''}{(stock.change*100).toFixed(1)}%)
-            </td>
+          <th>Company</th>
+          <th>Price</th>
+          <th>Gains/Losses</th>
         </tr>
-      ))}
+      </thead>
+
+      <tbody>
+        {stocks.map((stock, id) => (
+          <tr key={id}>
+            <td onClick = {() => handleClick(id)}><Link key={id} to={`/stocks/${stock.name}`}>{stock.name}</Link></td>
+            <td>{stock.lastPrice}</td>
+            <td>
+              {(stock.change * stock.open).toFixed(2)}
+              ({stock.change > 0 ? '+': ''}{(stock.change*100).toFixed(2)}%)
+            </td>
+          </tr>
+        ))}
+      </tbody>
+
         
     </table>
   )
