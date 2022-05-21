@@ -11,7 +11,7 @@ export default function Stocks() {
       </tr>
       {stocks.map(stock => (
         <tr>
-          <td><Link to={`/stock/${stock.name}`}>{stock.name}</Link></td>
+          <td><Link to={`/stocks/${stock.name}`}>{stock.name}</Link></td>
           <td>{stock.lastPrice}</td>
           <td>
             {(stock.change * stock.open).toFixed(2)}
