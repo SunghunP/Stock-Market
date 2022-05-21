@@ -1,10 +1,7 @@
 import stocks from "../models/stocksData"
 import { Link } from "react-router-dom"
-import { useState } from "react"
 
 export default function Stocks({setStock}) {
-  const [id, setId] = useState()
-
   function handleClick(id) {
     setStock(stocks[id])
   }
